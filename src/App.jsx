@@ -32,7 +32,7 @@ const App = () => {
   return (
     <CartProvider>
       {showLogin && <LoginPopup setShowLogin={setShowLogin} />}
-      <div className="app">
+      <div className="app" style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
         {/* Navbar with optional back arrow */}
         <Navbar
           setShowLogin={setShowLogin}
@@ -41,8 +41,8 @@ const App = () => {
           onBack={() => navigate(-1)} // Navigate to the previous page
         />
 
-        {/* Main Content */}
-        <div className="content">
+        {/* Main Content with padding to prevent overlap */}
+        <div className="content" style={{ flexGrow: 1, paddingTop: "70px" }}>
           <Routes>
             <Route path="/" element={<Home ref={homeRef} />} />
             <Route path="/cart" element={<Cart />} />

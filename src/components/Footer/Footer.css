@@ -1,3 +1,16 @@
+/* Ensure the body or main container takes the full height of the viewport */
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex-grow: 1; /* Allow the content to grow and push the footer down */
+}
+
+/* Your existing footer styles */
 .footer {
     color: white;
     background-color: rgb(40, 139, 37);
@@ -9,12 +22,14 @@
     padding-top: 80px;
     width: 100%;
     border-top: 4px solid rgb(81, 196, 77);
+    position: relative;
+    margin-top: auto; /* Ensure footer stays at the bottom */
 }
 
 .footer-content {
     width: 100%;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr; /* Default layout: 3 columns */
+    grid-template-columns: 2fr 1fr 1fr;
     gap: 80px;
 }
 

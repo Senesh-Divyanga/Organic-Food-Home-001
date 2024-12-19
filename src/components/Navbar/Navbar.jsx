@@ -27,7 +27,11 @@ const Navbar = ({ setShowLogin, scrollToSection, showBackArrow, onBack }) => {
         {/* Use logo as Back Arrow on ProductView Page */}
         {isProductViewPage && (
           <button className="back-arrow" onClick={onBack}>
-            <img src={assets1.logoImage} alt="Logo" className="logo back-arrow-logo" />
+            <img
+              src={assets1.logoImage}
+              alt="Logo"
+              className="logo back-arrow-logo"
+            />
           </button>
         )}
 
@@ -48,23 +52,31 @@ const Navbar = ({ setShowLogin, scrollToSection, showBackArrow, onBack }) => {
           <div className="bar"></div>
         </div>
 
-        {/* Navbar Links, Cart and Sign In Inside Hamburger Menu */}
-        <ul className={`navbar-menu ${isMenuOpen ? "active" : ""}`}>
-          <li onClick={() => handleNavClick("home")}>Home</li>
-          <li onClick={() => handleNavClick("products")}>Products</li>
-          <li onClick={() => handleNavClick("about")}>About Us</li>
-          <li onClick={() => handleNavClick("contact-us")}>Contact Us</li>
-          {/* Cart and Sign In Buttons inside the menu */}
-          <div className="navbar-right mobile-menu">
-            <Link to="/cart" className="cart-icon" onClick={() => setIsMenuOpen(false)}>
-              <img src={assets1.basketIcon} alt="Cart" />
-              {cartCount > 0 && <div className="dot">{cartCount}</div>}
-            </Link>
-            <button className="sign-in-button" onClick={() => setShowLogin(true)}>
-              Sign In
-            </button>
-          </div>
-        </ul>
+        {/* Wrap menu items, cart, and sign-in in the toggle */}
+        <div
+          className={`navbar-menu-wrapper ${isMenuOpen ? "active" : ""}`}
+        >
+          {/* Menu Items */}
+          {!isProductViewPage && (
+            <ul className="navbar-menu">
+              <li onClick={() => handleNavClick("home")}>Home</li>
+              <li onClick={() => handleNavClick("products")}>Products</li>
+              <li onClick={() => handleNavClick("about")}>About Us</li>
+              <li onClick={() => handleNavClick("contact-us")}>Contact Us</li>
+            </ul>
+          )}
+
+          {/* Cart Icon */}
+          <Link to="/cart" className="cart-icon">
+            <img src={assets1.basketIcon} alt="Cart" />
+            {cartCount > 0 && <div className="dot">{cartCount}</div>}
+          </Link>
+
+          {/* Sign In Button */}
+          <button className="sign-in-button" onClick={() => setShowLogin(true)}>
+            Sign In
+          </button>
+        </div>
       </div>
     </div>
   );
